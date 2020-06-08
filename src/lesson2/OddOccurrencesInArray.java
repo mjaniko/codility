@@ -1,5 +1,8 @@
 package lesson2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A non-empty array A consisting of N integers is given. The array contains an odd number of elements, and each element of the array can be paired with another element that has the same value, except for one element that is left unpaired.
  * <p>
@@ -34,13 +37,31 @@ package lesson2;
  */
 public class OddOccurrencesInArray {
 
+    /**
+     * Time Complexity: O(N) or O(N*log(N))
+     * @param A
+     * @return
+     */
     public int solution(int[] A) {
+        Map<Integer, Integer> pairs = new HashMap<>();
+        for (int i = 0; i < A.length; i++) {
+            if (pairs.containsKey(A[i])) {
+                pairs.put(A[i], pairs.get(A[i]) + 1);
+            } else {
+                pairs.put(A[i], 1);
+            }
+        }
+        for(Map.Entry<Integer,Integer> elem: pairs.entrySet()){
+            if(elem.getValue() % 2 != 0){
+                return elem.getKey();
+            }
+        }
         return 0;
     }
 
     public static void main(String[] args) {
         OddOccurrencesInArray odc = new OddOccurrencesInArray();
         int[] A = new int[]{9, 3, 9, 3, 9, 7, 9};
-        odc.solution(A);
+        System.out.println(odc.solution(A));
     }
 }
