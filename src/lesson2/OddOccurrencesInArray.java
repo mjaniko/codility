@@ -39,6 +39,7 @@ public class OddOccurrencesInArray {
 
     /**
      * Time Complexity: O(N) or O(N*log(N))
+     *
      * @param A
      * @return
      */
@@ -51,17 +52,39 @@ public class OddOccurrencesInArray {
                 pairs.put(A[i], 1);
             }
         }
-        for(Map.Entry<Integer,Integer> elem: pairs.entrySet()){
-            if(elem.getValue() % 2 != 0){
+        for (Map.Entry<Integer, Integer> elem : pairs.entrySet()) {
+            if (elem.getValue() % 2 != 0) {
                 return elem.getKey();
             }
         }
         return 0;
     }
 
+    /**
+     * Time Complexity: O(N)
+     * Using the concept of "XOR" (^)
+     * when there is a pair A and B
+     * A^B will be zero
+     * A^B^C (where C is not paired),
+     * then A^B^C = C
+     *
+     * @param A
+     * @return
+     */
+    public int solution2(int[] A) {
+        if (A.length == 0)
+            return 0;
+        int unpaired = A[0];
+        for (int i = 1; i < A.length; i++) {
+            unpaired = unpaired ^ A[i];
+        }
+        return unpaired;
+    }
+
     public static void main(String[] args) {
         OddOccurrencesInArray odc = new OddOccurrencesInArray();
         int[] A = new int[]{9, 3, 9, 3, 9, 7, 9};
         System.out.println(odc.solution(A));
+        System.out.println(odc.solution2(A));
     }
 }
