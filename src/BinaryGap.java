@@ -32,14 +32,17 @@ public class BinaryGap {
 
         int tempCount = 0;
         int binaryGap = 0;
-        for (int i = 0; i < num.length - 1; i++){
-            if(num[i] == '1'){
-                if(tempCount > 0){
-                    binaryGap = tempCount > binaryGap ? tempCount:binaryGap;
+        for (int i = 0; i < num.length; i++){
+            switch (num[i]){
+                case '1':{
+                    binaryGap = Math.max(binaryGap, tempCount);
+                    tempCount = 0;
+                    break;
                 }
-                tempCount = 0;
-            } else if(num[i] == '0'){
-                tempCount++;
+                case '0':{
+                    tempCount++;
+                    break;
+                }
             }
         }
         System.out.println("Number of zeros:"+ binaryGap);
@@ -48,6 +51,6 @@ public class BinaryGap {
 
     public static void main(String[] args) {
         BinaryGap bg = new BinaryGap();
-        bg.solution(32);
+        bg.solution(529);
     }
 }
