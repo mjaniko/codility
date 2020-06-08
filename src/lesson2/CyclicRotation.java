@@ -1,3 +1,5 @@
+package lesson2;
+
 /**
  * An array A consisting of N integers is given. Rotation of the array means that each element is shifted right by one index,
  * and the last element of the array is moved to the first place. For example,
@@ -42,7 +44,18 @@
  */
 public class CyclicRotation {
 
+
+    /**
+     * ციკლში/ ციკლი , Array Shift, A[0] როგორც მნიშვნელობის შესანახი ცვლადი.
+     *
+     * @param A
+     * @param K
+     * @return
+     */
     public int[] solution(int[] A, int K) {
+        if (A == null) {
+            throw new NullPointerException();
+        }
         while (K > 0) {
             for (int i = 0; i < A.length - 1; i++) {
                 A[0] += A[i + 1];
@@ -52,6 +65,24 @@ public class CyclicRotation {
             K--;
         }
         return A;
+    }
+
+    /**
+     * ფორმულა (i+k) % array.length
+     *
+     * @param A
+     * @param K
+     * @return
+     */
+    public int[] solution2(int[] A, int K) {
+        if (A == null) {
+            throw new NullPointerException();
+        }
+        int[] result = new int[A.length];
+        for (int i = 0; i < A.length; i++) {
+            result[(i + K) % A.length] = A[i];
+        }
+        return result;
     }
 
     /* utility function to print an array */
