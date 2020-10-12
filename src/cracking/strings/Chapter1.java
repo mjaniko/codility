@@ -84,6 +84,7 @@ public class Chapter1 {
 
     /**
      * This is done with additional data structure
+     *
      * @param phrase
      * @return
      */
@@ -108,6 +109,51 @@ public class Chapter1 {
         return count <= 1;
     }
 
+    public boolean replace(String s1, String s2) {
+        boolean replaced = false;
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                if (replaced) {
+                    return false;
+                } else {
+                    replaced = true;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean insert(String big, String small) {
+        boolean inserted = false;
+        int index = 0;
+        for (int i = 0; i < small.length(); i++) {
+            if (big.charAt(index) != small.charAt(i)) {
+                if (inserted) {
+                    return false;
+                } else {
+                    inserted = true;
+                    i--;
+                }
+            }
+            index++;
+        }
+        return true;
+    }
+
+    public boolean oneWayCheck(String s1, String s2) {
+        if (s1.equals(s2)) {
+            return true;
+        }
+        if (s1.length() == s2.length()) {
+            return replace(s1, s2);
+        } else if (s1.length() + 1 == s2.length()) {
+            return insert(s2, s1);
+        } else if (s1.length() == s2.length() + 1) {
+            return insert(s1, s2);
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         Chapter1 c1 = new Chapter1();
         //System.out.println(c1.isUniqueBruteForce("მიშო"));
@@ -115,7 +161,11 @@ public class Chapter1 {
         //System.out.println(c1.isUniqueBruteForceBetter("მიშო"));
         //System.out.println(c1.isUniqueCharBool("miisho"));
         //System.out.println(c1.isPermutation("მიშო", "მიშო"));
-        System.out.println(c1.urlify("Mikheil Janiashvili"));
-        System.out.println(c1.checkIfPermutationOfPalindrome("tac coa"));
+        //System.out.println(c1.urlify("Mikheil Janiashvili"));
+        //System.out.println(c1.checkIfPermutationOfPalindrome("tac coa"));
+        //System.out.println(c1.oneWayCheck("pale", "ple"));
+        //System.out.println(c1.oneWayCheck("pales", "pale"));
+        //System.out.println(c1.oneWayCheck("pale", "bale"));
+        //System.out.println(c1.oneWayCheck("pale", "bae"));
     }
 }
