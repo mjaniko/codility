@@ -1,5 +1,8 @@
 package cracking.strings;
 
+import java.util.Hashtable;
+import java.util.Map;
+
 public class Chapter1 {
 
     public boolean isUniqueBruteForce(String s) {
@@ -79,6 +82,32 @@ public class Chapter1 {
         return new String(urlfy);
     }
 
+    /**
+     * This is done with additional data structure
+     * @param phrase
+     * @return
+     */
+    public boolean checkIfPermutationOfPalindrome(String phrase) {
+        int count = 0; // we start from 1
+        Hashtable<Character, Integer> table = new Hashtable<>();
+        for (char c : phrase.toCharArray()) {
+            if (c == ' ') {
+                continue;
+            }
+            if (table.get(c) == null) {
+                count++;
+                table.put(c, 1);
+            } else {
+                table.put(c, table.get(c) + 1);
+                if (table.get(c) % 2 == 0) {
+                    table.put(c, 0);
+                    count--;
+                }
+            }
+        }
+        return count <= 1;
+    }
+
     public static void main(String[] args) {
         Chapter1 c1 = new Chapter1();
         //System.out.println(c1.isUniqueBruteForce("მიშო"));
@@ -87,5 +116,6 @@ public class Chapter1 {
         //System.out.println(c1.isUniqueCharBool("miisho"));
         //System.out.println(c1.isPermutation("მიშო", "მიშო"));
         System.out.println(c1.urlify("Mikheil Janiashvili"));
+        System.out.println(c1.checkIfPermutationOfPalindrome("tac coa"));
     }
 }
