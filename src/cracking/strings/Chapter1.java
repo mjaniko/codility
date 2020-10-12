@@ -154,6 +154,26 @@ public class Chapter1 {
         return false;
     }
 
+    public String stringCompression(String s1) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < s1.length(); i++) {
+            int j = i;
+            int count = 0;
+            while (j < s1.length()) {
+                if (s1.charAt(j) == s1.charAt(i)) {
+                    count++;
+                } else {
+                    break;
+                }
+                j++;
+            }
+            stringBuilder.append(s1.charAt(i));
+            stringBuilder.append(count);
+            i += count - 1;
+        }
+        return stringBuilder.toString();
+    }
+
     public static void main(String[] args) {
         Chapter1 c1 = new Chapter1();
         //System.out.println(c1.isUniqueBruteForce("მიშო"));
@@ -167,5 +187,6 @@ public class Chapter1 {
         //System.out.println(c1.oneWayCheck("pales", "pale"));
         //System.out.println(c1.oneWayCheck("pale", "bale"));
         //System.out.println(c1.oneWayCheck("pale", "bae"));
+        System.out.println(c1.stringCompression("aabcccccaaa"));
     }
 }
