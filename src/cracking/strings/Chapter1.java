@@ -174,6 +174,20 @@ public class Chapter1 {
         return stringBuilder.toString();
     }
 
+    public String compressBetter(String s1) {
+        StringBuilder str = new StringBuilder();
+        int countMatches = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            countMatches++;
+            if (i + 1 >= s1.length() || s1.charAt(i) != s1.charAt(i + 1)) {
+                str.append(s1.charAt(i));
+                str.append(countMatches);
+                countMatches = 0;
+            }
+        }
+        return str.toString();
+    }
+
     public static void main(String[] args) {
         Chapter1 c1 = new Chapter1();
         //System.out.println(c1.isUniqueBruteForce("მიშო"));
@@ -188,5 +202,6 @@ public class Chapter1 {
         //System.out.println(c1.oneWayCheck("pale", "bale"));
         //System.out.println(c1.oneWayCheck("pale", "bae"));
         System.out.println(c1.stringCompression("aabcccccaaa"));
+        System.out.println(c1.compressBetter("aabcccccaaa"));
     }
 }
