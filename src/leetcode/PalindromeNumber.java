@@ -6,9 +6,7 @@ package leetcode;
 public class PalindromeNumber {
     public boolean isPalindrome(int x) {
         int INT_MAX = -1 >>> 1;
-        int INT_LOW = 31 << 1;
         if(x > INT_MAX) return false;
-        if(x < INT_LOW) return false;
 
         if(x == 0) return true; // zero is palindrome num
         if(x < 0 || x % 10 == 0) return false;
