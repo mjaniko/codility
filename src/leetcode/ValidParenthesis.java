@@ -16,6 +16,8 @@ public class ValidParenthesis {
                 char curVal = left_sides.peek(); // ვიღებ
                 if (c == ')' && curVal == '(' || c == '}' && curVal == '{' || c == ']' && curVal == '[') {
                     left_sides.pop(); // ვაგდებ
+                } else {
+                    return false;
                 }
             }
         }
@@ -28,5 +30,6 @@ public class ValidParenthesis {
         System.out.println(vp.isValid("{([])}()[]"));
         System.out.println(vp.isValid("{[})"));
         System.out.println(vp.isValid("{}()[]"));
+        System.out.println(vp.isValid("(])"));
     }
 }
