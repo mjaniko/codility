@@ -57,6 +57,16 @@ public class Chapter1 {
         return s1Weight == s2Weight;
     }
 
+    public boolean isPermutationBitwise(String s1, String s2) {
+        if (s1.length() != s2.length()) return false;
+        int result = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            result ^= s1.charAt(i);
+            result ^= s2.charAt(i);
+        }
+        return result == 0;
+    }
+
     public String urlify(String input) {
         System.out.println("Input String:" + input);
         int spaceCount = 0;
@@ -241,13 +251,13 @@ public class Chapter1 {
         }
 
         for (int i = 0; i < rowM.length; i++) {
-            if(rowM[i]){
+            if (rowM[i]) {
                 setZerosRow(matrix, i);
             }
         }
 
         for (int i = 0; i < columnN.length; i++) {
-            if(columnN[i]){
+            if (columnN[i]) {
                 setZeroColumn(matrix, i);
             }
         }
@@ -337,7 +347,8 @@ public class Chapter1 {
         //System.out.println(c1.isUniqueBruteForce("მიიშო"));
         //System.out.println(c1.isUniqueBruteForceBetter("მიშო"));
         //System.out.println(c1.isUniqueCharBool("miisho"));
-        //System.out.println(c1.isPermutation("მიშო", "მიშო"));
+        System.out.println(c1.isPermutation("მიშო", "მიშო"));
+        System.out.println(c1.isPermutationBitwise("მიშო", "მიშკ"));
         //System.out.println(c1.urlify("Mikheil Janiashvili"));
         //System.out.println(c1.checkIfPermutationOfPalindrome("tac coa"));
         //System.out.println(c1.oneWayCheck("pale", "ple"));
